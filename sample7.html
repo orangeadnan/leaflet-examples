@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <title>Leaflet examples</title>
+  <link rel="stylesheet" href="dist/leaflet.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="dist/leaflet.ie.css" /><![endif]-->
+  <script src="dist/leaflet-src.js"></script>
+  <script src="leaflet-google.js"></script>
+  <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+</head>
+<body>
+  <h1>ALL THE LAYERS!!!!</h1>
+  <div id="map" style="width:400px; height: 300px;"></div>
+  <script type="text/javascript">
+    var map = new L.Map('map');
+
+    var gmaps_s = new L.Google('SATELLITE');
+    var gmaps_r = new L.Google('ROADMAP');
+    var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
+      attribution: 'OSM, CC-BY-SA 2.0, ...',
+      maxZoom: 18
+    });
+    var opencycle = new L.TileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
+      attribution: 'openCycle, CC-BY-SA 2.0, ...',
+      maxZoom: 18
+    });
+
+    var center = new L.LatLng(50.941252,6.958283);
+
+    // Initialize with Cloudmade
+    map.addLayer(cloudmade).setView(center, 17);
+
+    // all the layers!
+    var maps = {
+      "Cloudmade": cloudmade,
+      "Google Maps - Roadmap": gmaps_r,
+      "Google Maps - Satellite": gmaps_s,
+      "OpenCycleMap": opencycle
+    };
+
+    var layersControl = new L.Control.Layers(maps);
+    map.addControl(layersControl);
+
+    //Add the marker
+    var marker = new L.Marker(center);
+    map.addLayer(marker);
+    marker.bindPopup('K&ouml;lner Dom').openPopup();
+
+  </script>
+</body>
+</html>

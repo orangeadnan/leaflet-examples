@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <title>Leaflet examples</title>
+  <link rel="stylesheet" href="dist/leaflet.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="dist/leaflet.ie.css" /><![endif]-->
+  <script src="dist/leaflet-src.js"></script>
+</head>
+<body>
+  <h1>Polygon Layer</h1>
+  <div id="map" style="width:400px; height: 300px;"></div>
+  <script type="text/javascript">
+    var center = new L.LatLng(50.941252,6.958283);
+    var map = new L.Map('map', { center: center, zoom:11});
+
+    var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png');
+
+    map.addLayer(cloudmade);
+
+    var polygonPoints = [
+      new L.LatLng(50.974265,7.028418),
+      new L.LatLng(50.953777,7.03760),
+      new L.LatLng(50.964211,7.071762),
+      new L.LatLng(50.974102,7.059317),
+      new L.LatLng(50.985234,7.049274)
+    ];
+    var polygon = new L.Polygon(polygonPoints);
+    map.addLayer(polygon);
+
+  </script>
+</body>
+</html>

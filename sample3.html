@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <title>Leaflet examples</title>
+  <link rel="stylesheet" href="dist/leaflet.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="dist/leaflet.ie.css" /><![endif]-->
+  <script src="dist/leaflet-src.js"></script>
+</head>
+<body>
+  <h1>Interactive Example</h1>
+  <div id="map" style="width:400px; height: 300px;"></div>
+  <script type="text/javascript">
+    var map = new L.Map('map');
+
+    // Cloudmade Layer
+    var options = {
+      attribution: 'OSM, CC-BY-SA 2.0, ...',
+      maxZoom: 18
+    };
+    var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', options);
+
+    var center = new L.LatLng(50.935715,6.961555);
+    map.addLayer(cloudmade).setView(center, 11);
+    
+    map.on('click', mapClickEvent);
+
+    function mapClickEvent(e) {
+      var marker = new L.Marker(e.latlng);
+      map.addLayer(marker);
+    }
+
+  </script>
+</body>
+</html>

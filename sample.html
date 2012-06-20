@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <title>Leaflet examples</title>
+  <link rel="stylesheet" href="dist/leaflet.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="dist/leaflet.ie.css" /><![endif]-->
+  <script src="dist/leaflet-src.js"></script>
+</head>
+<body>
+  <h1>Simple sample</h1>
+  <div id="map" style="width:400px; height: 300px;"></div>
+  <script type="text/javascript">
+    var center = new L.LatLng(50.941252,6.958283);
+    var map = new L.Map('map', { center: center, zoom: 13});
+
+    var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png');
+
+    map.addLayer(cloudmade);
+
+    var marker = new L.Marker(center);
+    map.addLayer(marker);
+    marker.bindPopup('Dom').openPopup();
+  </script>
+</body>
+</html>
